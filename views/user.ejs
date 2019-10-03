@@ -1,0 +1,29 @@
+<% include ./partials/head %>
+<% include ./partials/header %>
+<% include ./partials/navigation %>
+
+<main>
+	<h1><%= user.name %>'s Væg</h1>
+	<% user.posts.forEach(post => { %>
+		<article class="post">
+			<div><%= post.text %></div>
+
+			<% if( post.liked) { %>
+
+			<form action="/like/del/<%= user._id %>/<%= post._id %>" method="post">
+				<button type="submit" class="button like-button"><i data-feather="thumbs-up"></i> Fjern Synes om</button>
+			</form>
+
+			<% } else { %>
+
+				<form action="/like/<%= user._id %>/<%= post._id %>" method="post">
+					<button type="submit" class="button like-button"><i data-feather="thumbs-up"></i> Synes om</button>
+				</form>
+
+			<% } %>
+
+		</article>
+	<% }); %>
+</main>
+
+<% include ./partials/footer %>

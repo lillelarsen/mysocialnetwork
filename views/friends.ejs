@@ -1,0 +1,15 @@
+<% include ./partials/head %>
+<% include ./partials/header %>
+<% include ./partials/navigation %>
+
+<main>
+		<h1>Venner</h1>
+		
+		<% users.forEach(user => { %>
+		<article class="post">
+			<a href="/user/<%= user._id %>" class="button like-button"><%= user.name %></a>
+		</article>
+		<% }); %>
+</main>
+
+<% include ./partials/footer %>

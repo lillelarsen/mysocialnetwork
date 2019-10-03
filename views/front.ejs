@@ -1,0 +1,34 @@
+<% include ./partials/head %>
+<% include ./partials/header %>
+<% include ./partials/navigation %>
+
+<main>
+	<% if (loggedIn) { %> 
+		<h1><%= user.name %>'s Væg</h1>
+		<form action="/newpost/<%= loggedIn %>" method="post">
+			<textarea name="newpost" placeholder="Hvad har du på hjertet?"></textarea>
+			<button type="submit">Send</button>
+		</form>
+
+		<% user.posts.forEach(post => { %>
+		<article class="post">
+			<div><%= post.text %></div>
+		</article>
+		<% }); %>
+
+	<% } else { %>
+		<form action="/login" method="post">
+			<div>
+				<label for="email">email</label>
+				<input type="email" name="email" id="email">
+			</div>
+			<div>
+				<label for="password">Adgangskode</label>
+				<input type="password" name="password" id="password">
+			</div>
+			<button type="submit">Log ind</button>
+		</form>
+	<% } %>
+</main>
+
+<% include ./partials/footer %>
